@@ -1,0 +1,14 @@
+<div class="container">
+  <section>
+    <p>Over 32k+ software businesses growing with our platform.</p>
+    <section class="partner_section">
+      <div class="carousel">
+        @for (logo of logos; track logo; let i = $index) {
+        <div class="carousel-item {{logo.class}}">
+          <img [src]="logo.src" [alt]="logo.alt" />
+        </div>
+        }
+      </div>
+    </section>
+  </section>
+</div>

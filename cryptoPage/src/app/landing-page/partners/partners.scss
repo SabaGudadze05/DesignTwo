@@ -1,0 +1,144 @@
+.container {
+  width: 100%;
+  background-color: #ffffff;
+}
+
+section {
+  max-width: 1440px;
+  margin: auto;
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  overflow: hidden;
+  p {
+    color: #636363;
+    font-size: 24px;
+    text-align: center;
+  }
+}
+
+.partner_section {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel {
+  width: max-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+  .first {
+    animation: up-to-down 2s linear infinite;
+  }
+  .second {
+    animation: down-to-up 2s linear infinite;
+  }
+  @keyframes up-to-down {
+    0% {
+      transform: translateY(0);
+    }
+    25% {
+      transform: translateY(25%);
+    }
+    75% {
+      transform: translateY(-25%);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
+  @keyframes down-to-up {
+    0% {
+      transform: translateY(0);
+    }
+    25% {
+      transform: translateY(-25%);
+    }
+    75% {
+      transform: translateY(25%);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
+}
+.carousel-item {
+  display: flex;
+}
+
+.carousel-item img {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+  transition: 0.3s ease;
+}
+
+.carousel-item img:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+@media (max-width: 1100px) {
+  .carousel {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    // align-items: center;\
+    justify-content: center;
+    gap: 10px;
+  }
+}
+@media (max-width: 1024px) {
+  section {
+    padding: 100px 50px;
+  }
+}
+@media (max-width: 880px) {
+  .first,
+  .second {
+    animation: none !important;
+  }
+  .carousel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .carousel-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 30%;
+    }
+  }
+}
+@media (max-width: 768px) {
+  section {
+    padding: 100px 20px;
+  }
+  .carousel {
+    flex-wrap: wrap;
+  }
+  .carousel-item {
+    flex-shrink: 0;
+  }
+}
+@media (max-width: 600px) {
+  section {
+    padding: 50px 20px;
+    p {
+      font-size: 20px;
+    }
+  }
+  .carousel {
+    justify-content: space-around;
+    gap: 20px 0;
+    .carousel-item {
+      height: 60px;
+      img {
+        height: 100%;
+      }
+    }
+  }
+}
