@@ -1,0 +1,29 @@
+.container {
+  width: 100%;
+  position: relative;
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(228, 255, 224, 1) 10%,
+    rgba(233, 255, 230, 1) 50%,
+    rgba(238, 255, 235, 1) 90%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+section {
+  overflow: hidden;
+  width: 100%;
+  max-width: 1440px;
+  padding: 50px 100px;
+  margin: auto;
+}
+@media (max-width: 1024px) {
+  section {
+    padding: 50px;
+  }
+}
+@media (max-width: 768px) {
+  section {
+    padding: 50px 20px;
+  }
+}

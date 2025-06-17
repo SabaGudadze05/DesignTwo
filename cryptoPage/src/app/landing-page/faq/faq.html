@@ -1,0 +1,23 @@
+<div class="container">
+  <section class="main_sec">
+    <article class="faq_article">
+      <div
+        class="faq_item"
+        *ngFor="let faq of faqs; let i = index"
+        (click)="toggleFAQ(i)"
+        [class.open]="faq.isOpen"
+      >
+        <h3>
+          {{faq.question}}
+          <i
+            class="fa-solid fa-plus plus"
+            [style.transform]="faq.isOpen ? 'rotate(45deg)' : 'rotate(0deg)'"
+          ></i>
+        </h3>
+        @if(faq.isOpen){
+        <p>{{faq.answer}}</p>
+        }
+      </div>
+    </article>
+  </section>
+</div>
