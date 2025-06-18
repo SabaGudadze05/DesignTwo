@@ -1,20 +1,39 @@
-<div class="header_container">
-    <header>
-        <section class="section_one">
-            <img src="/img/logo.png" alt="">
-        </section>
-        <nav>
-            <ul>
-                <li>Home</li>
-                <li>How it works</li>
-                <li>Services</li>
-                <li>Connect</li>
-            </ul>
-        </nav>
-        <section class="section_two">   
-            <button>
-                Log in
-            </button>
-        </section>
-    </header>
+<div class="header_container" #headerContainer>
+  <header>
+    <section class="section_one">
+      <img src="/img/logo.png" alt="" />
+    </section>
+    <nav>
+      <ul>
+        <li
+          (click)="scrollTO('home')"
+          [ngClass]="{'active': activeSection === 'home'}"
+        >
+          Home
+        </li>
+        <li
+          (click)="scrollTO('news')"
+          [ngClass]="{'active': activeSection === 'news'}"
+        >
+          News
+        </li>
+        <li
+          (click)="scrollTO('faq')"
+          [ngClass]="{'active': activeSection === 'faq'}"
+        >
+          FAQ
+        </li>
+        <li
+          (click)="scrollTO('newsletter')"
+          [ngClass]="{'active': activeSection === 'newsletter'}"
+        >
+          Subscribe to Newsletter
+        </li>
+      </ul>
+    </nav>
+    <section class="section_two">
+      <button (click)="openLoginPopup()">Log in</button>
+    </section>
+  </header>
+  <app-login></app-login>
 </div>

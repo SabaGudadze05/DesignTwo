@@ -5,10 +5,12 @@ import { Partners } from './partners/partners';
 import { CryptoCoins } from './crypto-coins/crypto-coins';
 import { News } from './news/news';
 import { FAQ } from './faq/faq';
+import { NewsLetter } from './news-letter/news-letter';
+import { Footer } from './footer/footer';
 
 @Component({
   selector: 'app-landing-page',
-  imports: [Header, Introduction, Partners, CryptoCoins,News, FAQ],
+  imports: [Header, Introduction, Partners, CryptoCoins, News, FAQ,NewsLetter, Footer],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.scss',
 })

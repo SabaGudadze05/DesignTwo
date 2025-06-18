@@ -3,7 +3,7 @@
   position: fixed;
   left: 0;
   top: 0;
-  background-color: #000000;
+  background-color: rgba(0, 0, 0, 0.9);
   z-index: 1121;
 }
 header {
@@ -11,14 +11,14 @@ header {
   width: 100%;
   max-width: 1440px;
   margin: auto;
-  padding: 32px 100px;
+  padding: 28px 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .section_one {
-  width: 64px;
-  height: 64px;
+  width: 56px;
+  height: 56px;
 }
 img {
   width: 100%;
@@ -37,9 +37,13 @@ li {
     transform: scale(1.1);
     cursor: pointer;
   }
+  &.active {
+    color: #368b67;
+    font-weight: bold;
+  }
 }
 button {
-  padding: 20px;
+  padding: 15px;
   font-size: 18px;
   background-color: inherit;
   color: #b2b2b2;

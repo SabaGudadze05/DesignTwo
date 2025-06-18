@@ -1,11 +1,18 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component,OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-news',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './news.html',
   styleUrl: './news.scss'
 })
-export class News {
+export class News  implements OnInit{
+  isLoading: boolean = true;
 
+  ngOnInit(): void {
+    setTimeout (()=>{
+      this.isLoading = false
+    }, 3000)
+  }
 }
