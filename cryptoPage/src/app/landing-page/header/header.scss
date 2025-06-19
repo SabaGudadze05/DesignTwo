@@ -11,14 +11,14 @@ header {
   width: 100%;
   max-width: 1440px;
   margin: auto;
-  padding: 28px 100px;
+  padding: 14px 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .section_one {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
 }
 img {
   width: 100%;
@@ -77,8 +77,6 @@ button {
   }
 }
 @media (max-width: 600px) {
-  header {
-  }
   button {
     padding: 10px;
   }

@@ -48,6 +48,13 @@ h2 {
   margin-bottom: 20px;
 }
 
+.log_in_section_p {
+  text-align: center;
+  font-size: 16px;
+  color: #3f4843;
+  margin-bottom: 20px;
+}
+
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -79,31 +86,64 @@ h2 {
   }
 }
 
-.custom-select {
+.custom-select-wrapper {
   position: relative;
-  select {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #3a8a68;
-    border-radius: 8px;
-    font-size: 16px;
-    appearance: none;
-    background: #fff;
-    cursor: pointer;
-    transition: 0.3s ease;
-    &:focus {
-      outline: none;
-      border-color: #2e6e54;
-    }
+  border: 2px solid #3a8a68;
+  border-radius: 8px;
+  font-size: 16px;
+  background: #fff;
+  cursor: pointer;
+  transition: 0.3s ease;
+  &.ng-invalid.ng-touched {
+    border-color: #ff4d4d;
   }
-  &::after {
-    content: "▼";
-    position: absolute;
-    top: 50%;
-    right: 12px;
-    transform: translateY(-50%);
-    color: #3a8a68;
-    pointer-events: none;
+  &:focus-within {
+    border-color: #2e6e54;
+  }
+}
+
+.custom-select-trigger {
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  span {
+    color: #3f4843;
+  }
+}
+
+.arrow {
+  border: solid #3a8a68;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+  &.up {
+    transform: rotate(-135deg);
+  }
+}
+
+.custom-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 2px solid #3a8a68;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.custom-option {
+  padding: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  &:hover {
+    background: #f5f5f5;
   }
 }
 
@@ -123,30 +163,41 @@ h2 {
   .dial-code {
     width: 80px;
     flex-shrink: 0;
-    select {
+    background: #f5f5f5;
+    border-right: 1px solid #3a8a68;
+    &.custom-select-wrapper {
+      background-color: inherit;
       border: none;
-      // border-right: 1px solid #3a8a68;
-      border-radius: 0;
-      padding: 12px 24px 12px 12px;
-      height: 100%;
-      background: #f5f5f5;
-      &:focus {
-        outline: none;
-        border-right-color: #2e6e54;
-      }
+      border-radius: inherit;
+      position: absolute;
     }
-    &::after {
-      right: 8px;
+    .counrtyCode {
+      font-size: 12px;
+    }
+    .custom-select-trigger {
+      padding: 15px 10px;
+    }
+    .custom-options {
+      border: 2px solid #3a8a68;
+      border-radius: 8px;
     }
   }
   input {
     border: none;
     border-radius: 0;
-    padding: 12px;
+    padding: 12px 12px 12px 90px;
     flex: 1;
     &:focus {
       outline: none;
     }
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
   }
 }
 
@@ -226,20 +277,22 @@ h2 {
     label {
       font-size: 14px;
     }
-    input,
-    select {
+    input {
       font-size: 14px;
     }
+  }
+  .custom-select-wrapper {
+    font-size: 14px;
   }
   .submit-button {
     font-size: 14px;
   }
   .signup-link {
-    font-size: 14px;
+    font-size: 16px;
   }
   .phone-input {
     .dial-code {
-      width: 70px;
+      width: 80px;
     }
   }
 }

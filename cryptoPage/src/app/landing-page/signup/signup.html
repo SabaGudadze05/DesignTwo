@@ -1,107 +1,365 @@
-<div class="popup-overlay" *ngIf="showPopup" (click)="closePopup()">
-  <div class="popup-content" (click)="$event.stopPropagation()">
-    <button class="close-button" (click)="closePopup()" aria-label="Close signup popup">×</button>
+<div
+  class="popup-overlay"
+  *ngIf="showPopup"
+  (click)="closePopupOnOverlay($event)"
+>
+  <div class="popup-content">
+    <button class="close-button" (click)="closePopup()">×</button>
     <h2>Sign Up</h2>
+    <p class="log_in_section_p">
+      Create a new account by entering your details
+    </p>
+
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-      <div class="form-row">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input id="name" type="text" formControlName="name" [ngClass]="{'invalid': signupForm.get('name')?.invalid && signupForm.get('name')?.touched}" />
-          <div class="error" *ngIf="signupForm.get('name')?.invalid && signupForm.get('name')?.touched">
-            <div *ngIf="signupForm.get('name')?.errors?.['required']">Name is required</div>
-            <div *ngIf="signupForm.get('name')?.errors?.['minlength']">Minimum 2 characters</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="lastName">Last Name</label>
-          <input id="lastName" type="text" formControlName="lastName" [ngClass]="{'invalid': signupForm.get('lastName')?.invalid && signupForm.get('lastName')?.touched}" />
-          <div class="error" *ngIf="signupForm.get('lastName')?.invalid && signupForm.get('lastName')?.touched">
-            <div *ngIf="signupForm.get('lastName')?.errors?.['required']">Last Name is required</div>
-            <div *ngIf="signupForm.get('lastName')?.errors?.['minlength']">Minimum 2 characters</div>
-          </div>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input id="username" type="text" formControlName="username" [ngClass]="{'invalid': signupForm.get('username')?.invalid && signupForm.get('username')?.touched}" />
-          <div class="error" *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched">
-            <div *ngIf="signupForm.get('username')?.errors?.['required']">Username is required</div>
-            <div *ngIf="signupForm.get('username')?.errors?.['minlength']">Minimum 3 characters</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="dob">Date of Birth</label>
-          <input id="dob" type="date" formControlName="dob" [ngClass]="{'invalid': signupForm.get('dob')?.invalid && signupForm.get('dob')?.touched}" />
-          <div class="error" *ngIf="signupForm.get('dob')?.invalid && signupForm.get('dob')?.touched">
-            <div *ngIf="signupForm.get('dob')?.errors?.['required']">Date of Birth is required</div>
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input id="email" type="email" formControlName="email" [ngClass]="{'invalid': signupForm.get('email')?.invalid && signupForm.get('email')?.touched}" />
-        <div class="error" *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
-          <div *ngIf="signupForm.get('email')?.errors?.['required']">Email is required</div>
-          <div *ngIf="signupForm.get('email')?.errors?.['email']">Invalid email format</div>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="language">Language</label>
-          <div class="custom-select">
-            <select id="language" formControlName="language">
-              <option value="" disabled selected>Select Language</option>
-              <option value="en">English</option>
-              <option value="es">Spanish</option>
-              <option value="fr">French</option>
-              <option value="ka">Georgian</option>
-            </select>
-          </div>
-          <div class="error" *ngIf="signupForm.get('language')?.invalid && signupForm.get('language')?.touched">
-            <div *ngIf="signupForm.get('language')?.errors?.['required']">Language is required</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <div class="phone-input">
-            <div class="custom-select dial-code">
-              <select formControlName="dialCode">
-                <option value="" disabled selected>Code</option>
-                <option value="+1">+1</option>
-                <option value="+44">+44</option>
-                <option value="+995">+995</option>
-              </select>
+      <div class="form_inputs_container">
+        <div class="form-row">
+          <div class="form-group">
+            <label>
+              First Name:
+              <input
+                type="text"
+                formControlName="name"
+                placeholder="Enter your first name"
+                [ngClass]="{ 'invalid': signupForm.controls['name'].invalid && signupForm.controls['name'].touched }"
+              />
+            </label>
+            <div
+              class="error"
+              *ngIf="signupForm.controls['name'].invalid && signupForm.controls['name'].touched"
+            >
+              <div *ngIf="signupForm.controls['name'].errors?.['required']">
+                Name is required
+              </div>
+              <div *ngIf="signupForm.controls['name'].errors?.['minlength']">
+                Minimum 2 characters
+              </div>
             </div>
-            <input id="phone" type="tel" formControlName="phone" [ngClass]="{'invalid': signupForm.get('phone')?.invalid && signupForm.get('phone')?.touched}" />
           </div>
-          <div class="error" *ngIf="signupForm.get('phone')?.invalid && signupForm.get('phone')?.touched">
-            <div *ngIf="signupForm.get('phone')?.errors?.['required']">Phone number is required</div>
-            <div *ngIf="signupForm.get('phone')?.errors?.['minlength']">Minimum 7 digits</div>
-          </div>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input id="password" type="password" formControlName="password" [ngClass]="{'invalid': signupForm.get('password')?.invalid && signupForm.get('password')?.touched}" />
-          <div class="error" *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
-            <div *ngIf="signupForm.get('password')?.errors?.['required']">Password is required</div>
-            <div *ngIf="signupForm.get('password')?.errors?.['pattern']">
-              Password must be at least 8 characters, include 1 uppercase, 1 lowercase, 1 number, and 1 special character
+          <div class="form-group">
+            <label>
+              Last Name:
+              <input
+                type="text"
+                formControlName="lastName"
+                placeholder="Enter your last name"
+                [ngClass]="{ 'invalid': signupForm.controls['lastName'].invalid && signupForm.controls['lastName'].touched }"
+              />
+            </label>
+            <div
+              class="error"
+              *ngIf="signupForm.controls['lastName'].invalid && signupForm.controls['lastName'].touched"
+            >
+              <div *ngIf="signupForm.controls['lastName'].errors?.['required']">
+                Last Name is required
+              </div>
+              <div
+                *ngIf="signupForm.controls['lastName'].errors?.['minlength']"
+              >
+                Minimum 2 characters
+              </div>
             </div>
           </div>
         </div>
-        <div class="form-group">
-          <label for="repeatPassword">Repeat Password</label>
-          <input id="repeatPassword" type="password" formControlName="repeatPassword" [ngClass]="{'invalid': signupForm.get('repeatPassword')?.invalid && signupForm.get('repeatPassword')?.touched}" />
-          <div class="error" *ngIf="signupForm.get('repeatPassword')?.invalid && signupForm.get('repeatPassword')?.touched">
-            <div *ngIf="signupForm.get('repeatPassword')?.errors?.['required']">Repeat Password is required</div>
-            <div *ngIf="signupForm.get('repeatPassword')?.errors?.['mustMatch']">Passwords must match</div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>
+              Username:
+              <input
+                type="text"
+                formControlName="username"
+                placeholder="Enter your username"
+                [ngClass]="{ 'invalid': signupForm.controls['username'].invalid && signupForm.controls['username'].touched }"
+              />
+            </label>
+            <div
+              class="error"
+              *ngIf="signupForm.controls['username'].invalid && signupForm.controls['username'].touched"
+            >
+              <div *ngIf="signupForm.controls['username'].errors?.['required']">
+                Username is required
+              </div>
+              <div
+                *ngIf="signupForm.controls['username'].errors?.['minlength']"
+              >
+                Minimum 3 characters
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>
+              Date of Birth:
+              <input
+                type="date"
+                formControlName="dob"
+                [ngClass]="{ 'invalid': signupForm.controls['dob'].invalid && signupForm.controls['dob'].touched }"
+              />
+            </label>
+            <div
+              class="error"
+              *ngIf="signupForm.controls['dob'].invalid && signupForm.controls['dob'].touched"
+            >
+              <div *ngIf="signupForm.controls['dob'].errors?.['required']">
+                Date of Birth is required
+              </div>
+            </div>
           </div>
         </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>
+              Email:
+              <input
+                type="email"
+                formControlName="email"
+                placeholder="Enter your email"
+                [ngClass]="{ 'invalid': signupForm.controls['email'].invalid && signupForm.controls['email'].touched }"
+              />
+            </label>
+            <div
+              class="error"
+              *ngIf="signupForm.controls['email'].invalid && signupForm.controls['email'].touched"
+            >
+              <div *ngIf="signupForm.controls['email'].errors?.['required']">
+                Email is required
+              </div>
+              <div *ngIf="signupForm.controls['email'].errors?.['email']">
+                Invalid email format
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>
+              Language:
+              <div
+                class="custom-select-wrapper"
+                [ngClass]="{
+                  'ng-touched': signupForm.controls['language'].touched,
+                  'ng-valid': signupForm.controls['language'].valid,
+                  'ng-invalid': signupForm.controls['language'].invalid
+                }"
+              >
+                <div
+                  class="custom-select-trigger"
+                  (click)="toggleLanguageDropdown($event)"
+                >
+                  <span>{{ selectedLanguage || 'Select Language' }}</span>
+                  <i
+                    class="arrow"
+                    [ngClass]="{ 'up': isLanguageDropdownOpen }"
+                  ></i>
+                </div>
+                <div
+                  class="custom-options options"
+                  *ngIf="isLanguageDropdownOpen"
+                >
+                  @for(language of countryName;track language){
+                  <div
+                    class="custom-option"
+                    (click)="selectLanguage(language.code)"
+                  >
+                    {{language.code}} ({{language.name}})
+                  </div>
+                  }
+                </div>
+                <input type="hidden" formControlName="language" />
+              </div>
+            </label>
+            <div
+              class="error"
+              *ngIf="signupForm.controls['language'].invalid && signupForm.controls['language'].touched"
+            >
+              <div *ngIf="signupForm.controls['language'].errors?.['required']">
+                Language is required
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>
+              Country:
+              <div
+                class="custom-select-wrapper"
+                [ngClass]="{
+                  'ng-touched': signupForm.controls['country'].touched,
+                  'ng-valid': signupForm.controls['country'].valid,
+                  'ng-invalid': signupForm.controls['country'].invalid
+                }"
+              >
+                <div
+                  class="custom-select-trigger"
+                  (click)="toggleCountryDropdown($event)"
+                >
+                  <span>{{ selectedCountry || 'Select Country' }}</span>
+                  <i
+                    class="arrow"
+                    [ngClass]="{ 'up': isCountryDropdownOpen }"
+                  ></i>
+                </div>
+                <div
+                  class="custom-options options"
+                  *ngIf="isCountryDropdownOpen"
+                >
+                  <div class="custom-option" (click)="selectCountry('English')">
+                    English
+                  </div>
+                  @for(country of countryName; track country){
+                  <div
+                    class="custom-option"
+                    (click)="selectCountry(country.name)"
+                  >
+                    {{country.name}}
+                  </div>
+                  }
+                </div>
+                <input type="hidden" formControlName="language" />
+              </div>
+            </label>
+            <div
+              class="error"
+              *ngIf="signupForm.controls['language'].invalid && signupForm.controls['language'].touched"
+            >
+              <div *ngIf="signupForm.controls['language'].errors?.['required']">
+                Language is required
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="phone">
+              Phone Number:
+              <div
+                class="phone-input"
+                [ngClass]="{
+                  'invalid': (signupForm.controls['dialCode'].invalid || signupForm.controls['phone'].invalid) &&
+                             (signupForm.controls['dialCode'].touched || signupForm.controls['phone'].touched)
+                }"
+              >
+                <div
+                  class="dial-code custom-select-wrapper"
+                  [ngClass]="{
+                    'ng-touched': signupForm.controls['dialCode'].touched,
+                    'ng-valid': signupForm.controls['dialCode'].valid,
+                    'ng-invalid': signupForm.controls['dialCode'].invalid
+                  }"
+                >
+                  <div
+                    class="custom-select-trigger"
+                    (click)="toggleDialCodeDropdown($event)"
+                  >
+                    <span>{{ selectedDialCode || 'Code' }}</span>
+                    <i
+                      class="arrow"
+                      [ngClass]="{ 'up': isDialCodeDropdownOpen }"
+                    ></i>
+                  </div>
+                  <div
+                    class="custom-options options"
+                    *ngIf="isDialCodeDropdownOpen"
+                  >
+                    @for(dialCode of countryDialCode;track dialCode){
+                    <div
+                      class="custom-option"
+                      (click)="selectDialCode(dialCode.dial_code)"
+                    >
+                      {{dialCode.dial_code}}
+                      <span class="counrtyCode">({{dialCode.code}})</span>
+                    </div>
+                    }
+                  </div>
+                  <input type="hidden" formControlName="dialCode" />
+                </div>
+                <input
+                  type="number"
+                  formControlName="phone"
+                  placeholder="Enter your phone number"
+                />
+              </div>
+            </label>
+            <div
+              class="error"
+              *ngIf="signupForm.controls['dialCode'].invalid && signupForm.controls['dialCode'].touched"
+            >
+              <div *ngIf="signupForm.controls['dialCode'].errors?.['required']">
+                Please select a dial code
+              </div>
+            </div>
+            <div
+              class="error"
+              *ngIf="signupForm.controls['phone'].invalid && signupForm.controls['phone'].touched"
+            >
+              <div *ngIf="signupForm.controls['phone'].errors?.['required']">
+                Phone number is required
+              </div>
+              <div *ngIf="signupForm.controls['phone'].errors?.['minlength']">
+                Minimum 7 digits
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>
+              Password:
+              <input
+                type="password"
+                formControlName="password"
+                placeholder="Enter your password"
+                [ngClass]="{ 'invalid': signupForm.controls['password'].invalid && signupForm.controls['password'].touched }"
+              />
+            </label>
+            <div
+              class="error"
+              *ngIf="signupForm.controls['password'].invalid && signupForm.controls['password'].touched"
+            >
+              <div *ngIf="signupForm.controls['password'].errors?.['required']">
+                Password is required
+              </div>
+              <div *ngIf="signupForm.controls['password'].errors?.['pattern']">
+                Password must be at least 8 characters, include 1 uppercase, 1
+                lowercase, 1 number, and 1 special character
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>
+              Confirm Password:
+              <input
+                type="password"
+                formControlName="repeatPassword"
+                placeholder="Confirm your password"
+                [ngClass]="{ 'invalid': signupForm.controls['repeatPassword'].invalid && signupForm.controls['repeatPassword'].touched }"
+              />
+            </label>
+            <div
+              class="error"
+              *ngIf="signupForm.controls['repeatPassword'].invalid && signupForm.controls['repeatPassword'].touched"
+            >
+              <div
+                *ngIf="signupForm.controls['repeatPassword'].errors?.['required']"
+              >
+                Repeat Password is required
+              </div>
+              <div
+                *ngIf="signupForm.controls['repeatPassword'].errors?.['mustMatch']"
+              >
+                Passwords must match
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="submit-button"
+          [disabled]="signupForm.invalid"
+        >
+          Sign Up
+        </button>
       </div>
-      <button type="submit" class="submit-button" [disabled]="signupForm.invalid">Sign Up</button>
     </form>
   </div>
 </div>

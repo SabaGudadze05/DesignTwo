@@ -1,58 +1,140 @@
 .container {
   width: 100%;
-  position: relative;
-  background: linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(228, 255, 224, 1) 10%,
-    rgba(233, 255, 230, 1) 50%,
-    rgba(238, 255, 235, 1) 90%,
-    rgba(255, 255, 255, 1) 100%
-  );
+  border-bottom: 2px solid #3a8a68;
+  border-top: 2px solid #3a8a68;
+  background: url(/img/vector.png);
 }
-section {
+.main_section {
   overflow: hidden;
   width: 100%;
   max-width: 1440px;
-  padding: 50px 100px;
+  padding: 100px 100px;
   margin: auto;
-  min-height: 579px;
-}
-.placeholder {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 200px;
-  background-color: #f0f0f0;
-  color: #666;
-  font-size: 16px;
-}
+  gap: 100px;
 
-.spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid #ccc;
-  border-top: 4px solid #007bff;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
+  h2 {
+    font-size: 48px;
+    color: #3a8a68;
   }
-  100% {
-    transform: rotate(360deg);
+}
+.card_section {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+article {
+  background-color: rgba(255, 255, 255, 0.6);
+  width: 30%;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 10px;
+  .img_section {
+    width: 100%;
+    height: 300px;
+    border-radius: inherit;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+    }
+  }
+  .news_section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    padding: 10px 10px 30px 10px;
+    h3 {
+      width: 100%;
+    }
+    p {
+      color: grey;
+      max-height: 100px;
+      display: -webkit-box; /* Enables multi-line ellipsis */
+      -webkit-box-orient: vertical; /* Sets text flow to vertical */
+      -webkit-line-clamp: 4; /* Limits text to 4 lines (adjust as needed) */
+      overflow: hidden; /* Hides content that overflows */
+      text-overflow: ellipsis; /* Adds '...' for overflowed content */
+    }
+    .author_and_link_section {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0;
+      p {
+        width: 50%;
+        color: #010101;
+      }
+      a {
+        font-size: 14px;
+        cursor: pointer;
+        &:hover {
+          color: #bc9af9;
+        }
+      }
+    }
+  }
+  transition: all 0.5s ease;
+  &:hover {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 1);
   }
 }
 @media (max-width: 1024px) {
-  section {
-    padding: 50px;
+  .main_section {
+    padding: 100px 50px;
+    gap: 30px;
+  }
+  article {
+    .news_section {
+      h3 {
+        font-size: 18px;
+      }
+      p {
+        font-size: 16px;
+      }
+    }
+  }
+}
+@media (max-width: 980px) {
+  .card_section {
+    flex-direction: column;
+    gap: 30px;
+    width: 60%;
+    article {
+      width: 100%;
+      .news_section {
+        gap: 30px;
+      }
+    }
   }
 }
 @media (max-width: 768px) {
-  section {
+  .main_section {
+    padding: 100px 20px;
+  }
+  .card_section {
+    flex-direction: column;
+    gap: 30px;
+    width: 80%;
+    article {
+      width: 100%;
+      .news_section {
+        gap: 30px;
+      }
+    }
+  }
+}
+@media (max-width: 600px) {
+  .main_section {
     padding: 50px 20px;
   }
 }

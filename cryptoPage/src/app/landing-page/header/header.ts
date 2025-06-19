@@ -1,6 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { Login } from '../login/login';
+import { AuthService } from '../../auth-service';
 
 @Component({
   selector: 'app-header',
@@ -13,15 +21,18 @@ export class Header {
   @ViewChild(Login) LoginComponent!: Login;
 
   activeSection: string = 'home';
+  constructor(private authService: AuthService) {}
 
   private getHeaderHeight(): number {
     return (
       this.headerContainer?.nativeElement.getBoundingClientRect().height || 112
     );
   }
-
+  onLoginClicked() {
+    this.authService.openLogin();
+  }
   openLoginPopup() {
-    this.LoginComponent.openPopup();
+    this.authService.openLogin();
   }
 
   scrollTO(sectionID: string) {
